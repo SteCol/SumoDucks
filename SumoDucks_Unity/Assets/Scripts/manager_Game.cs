@@ -6,6 +6,8 @@ public class manager_Game : MonoBehaviour {
 
     public bool game_in_progress = false;
     public GameObject prefab_duck;
+    public GameObject[] m_spown_points = new GameObject[2];
+
 
     private List<GameObject> ducks = new List<GameObject>();
 
@@ -23,6 +25,17 @@ public class manager_Game : MonoBehaviour {
 
     public void round_begin()
     {
+        if(game_in_progress)
+        {
+            reset_round();
+        }
+
+        //spown ducks
+
+        for (int i = 0; i < m_spown_points.Length; i++) {
+            GameObject new_duck = Instantiate(prefab_duck);
+        }
+        
         game_in_progress = true;
     }
 
