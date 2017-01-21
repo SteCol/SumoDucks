@@ -11,8 +11,13 @@ public class ParentDuck : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+
     void Update() {
         if (destroyDuck)
         DestroyDuck();
+    }
+
+    public void ExitArena() {
+
     }
 }

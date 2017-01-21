@@ -11,6 +11,7 @@ public class water_script : MonoBehaviour {
     public float srcx1 = 0f;
     public float srcy1 = 0f;
     public Vector3 force;
+    int eventIndexer = 0;
 
     public float srcx2 = 0f;
     public float srcy2 = 0f;
@@ -18,8 +19,8 @@ public class water_script : MonoBehaviour {
 
     private Vector3[] baseHeight;
     Mesh mesh;
-    List<float> eventTimes;
-   List<float> eventPlaces;
+    public List<float> eventTimes;
+    public List<Vector3> eventPlaces;
 
     [Header("Plane sizes")]
     public int width = 1;
@@ -69,22 +70,29 @@ public class water_script : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.K))
         {
             print("k has been pressed");
-            eventTime = Time.time;
-            eventPos.x = srcx1;
-            eventPos.y = srcy1;
-
+            eventTimes.Add(Time.time);
+            Vector3 a;// = new Vector3();// eventPlaces[eventIndexer];
+            a.x = srcx1;
+            a.y = srcy1;
+            a.z = 0;
+            eventPlaces.Add(a);
+            if (eventPlaces.Count>25)
+            eventPlaces.RemoveAt(0);
         }
         Vector3 z = new Vector3(mother_blob222.transform.position.x, mother_blob222.transform.position.y, mother_blob222.transform.position.z);
         force = waveForce(z);
         mother_blob222.transform.position = mother_blob222.transform.position + 1000 * force * Time.deltaTime;
-        print(force);
+        //print(force);
      
     }
    public Vector3 waveForce(Vector3 position)
     {
+        for (int i= 0;i< eventPlaces.Count; i++) {
+            //Vector3 z = new Vector3(mother_blob2.position);
+            eventPos = eventPlaces[i];
+            eventTime = eventTimes[i];
 
-        //Vector3 z = new Vector3(mother_blob2.position);
-        Vector3 force; //= position;
+            Vector3 force; //= position;
         float distance1 = Mathf.Sqrt(Mathf.Pow(position.x - eventPos.x, 2) + Mathf.Pow(position.z - eventPos.y, 2));
         float wavecentre = Mathf.Abs(((Time.time - eventTime) * speed) - distance1);
         float forceAmplitude = Mathf.Cos(wavecentre * 3.14f) * (((wavecentre < 1) ? (1f - wavecentre) : 0) - 0) * waveSize;
@@ -93,7 +101,8 @@ public class water_script : MonoBehaviour {
         force.z = position.z - eventPos.y;
         force = Vector3.Normalize(force);
         force = force * forceAmplitude;
-        
+        }
+
         return force;
     }
 }
