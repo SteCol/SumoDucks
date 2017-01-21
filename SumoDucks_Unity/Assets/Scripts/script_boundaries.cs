@@ -13,4 +13,9 @@ public class script_boundaries : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnTriggerExit(Collider col)
+    {
+        Debug.Log(col.name);
+    }
 }
