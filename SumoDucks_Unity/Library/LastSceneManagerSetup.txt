@@ -5,9 +5,6 @@ sceneSetups:
 - path: Assets/Scenes/Scene_Level.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/Scenes/Scene_Stef.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/Scenes/scene_MichielsSandbox.unity
+- path: Assets/Scenes/Scene_Anton.unity
   isLoaded: 1
   isActive: 0
