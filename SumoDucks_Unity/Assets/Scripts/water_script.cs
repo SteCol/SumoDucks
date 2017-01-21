@@ -19,7 +19,7 @@ public class water_script : MonoBehaviour {
 
     private Vector3[] baseHeight;
     Mesh mesh;
-     List<float> eventTimes;
+    public List<float> eventTimes;
     public List<Vector3> eventPlaces;
 
     [Header("Plane sizes")]
