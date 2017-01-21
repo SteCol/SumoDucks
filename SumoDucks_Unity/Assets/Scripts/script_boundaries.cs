@@ -22,8 +22,12 @@ public class script_boundaries : MonoBehaviour {
     }
     void OnTriggerExit(Collider col)
     {
+
+        Debug.Log("exit player " + col.name);
+        /*
         int number = col.GetComponent<temp_duck>().m_player_number;
         m_game_manager.exit_ring(number);
-        
+        */
+
     }
 }
