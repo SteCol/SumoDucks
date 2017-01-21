@@ -12,7 +12,7 @@ public class Waves : MonoBehaviour {
     public GameObject controller;
     public float damping;
 
-    public bool waving;
+    public bool shoot, shootbump;
 
     public float angle;
     public float angleOffset;
@@ -34,19 +34,24 @@ public class Waves : MonoBehaviour {
             angle = angle - waveStrength * Time.deltaTime;
         }
         else {
+
+            
             if (angle < 0)
                 angle = angle + waveStrength * Time.deltaTime;
             if (angle > 0)
                 angle = angle - waveStrength * Time.deltaTime;
+
         }
 
-        if (angle < 0)
+        if (waveValue != 0)
         {
-            //angle = -angle;
+            shoot = true;
+        }
+        else {
+            shoot = false;
         }
 
-        this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle * waveStrength);
-
+        this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
 
         if (controller.GetComponent<DucklingsGenerator>().ducklings.Count > 0)
         {
