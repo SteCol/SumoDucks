@@ -15,7 +15,8 @@ public class manager_Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        round_begin();
+
+        reset_round();
 	}
 	
 	// Update is called once per frame
@@ -57,7 +58,13 @@ public class manager_Game : MonoBehaviour {
 
     public void reset_round()
     {
-        game_in_progress = true;
+        foreach (GameObject duck in ducks)
+        {
+            Destroy(duck);
+        }
+        ducks.Clear();
+
+
     }
 
     public void add_duck(GameObject duck)
