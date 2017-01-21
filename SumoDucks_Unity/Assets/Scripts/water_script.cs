@@ -22,7 +22,7 @@ public class water_script : MonoBehaviour {
     public int height = 1;
     public float xSize, ySize = 1;
     public float eventTime;
-    public float eventTimes[];
+    float eventTimes;
     public float waveSize = 1f;
 
     Vector3 eventPos;
