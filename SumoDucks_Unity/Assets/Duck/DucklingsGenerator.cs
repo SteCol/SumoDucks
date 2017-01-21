@@ -10,7 +10,6 @@ public class DucklingsGenerator : MonoBehaviour {
     public GameObject ducklingPrefab;
     public List<GameObject> ducklings;
 
-
 	// Use this for initialization
 	void Start () {
         ducklings.Clear();

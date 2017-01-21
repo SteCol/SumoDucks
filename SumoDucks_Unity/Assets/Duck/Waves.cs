@@ -6,7 +6,7 @@ public class Waves : MonoBehaviour {
     
 
     public float waveStrength;
-    public int playerNum;
+    private int playerNum;
     public float slerpValue;
     public float waveValue, pastWaveValue;
     public GameObject projectilePrefab;
@@ -25,6 +25,8 @@ public class Waves : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        playerNum = controller.GetComponent<Movement>().playerNum;
 	}
 	
 	// Update is called once per frame
@@ -52,16 +54,20 @@ public class Waves : MonoBehaviour {
         if (waveValue != pastWaveValue)
         {
             shoot = true;
+
+            pastWaveValue = waveValue;
+        }
+
+
+        if (shoot) {
             print("SHOOT");
             GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
             projectile.transform.parent = this.transform.parent;
             projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
-            pastWaveValue = waveValue;
-        }
-        else {
             shoot = false;
+
         }
-        
+
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
 
