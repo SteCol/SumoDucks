@@ -153,8 +153,8 @@ public class water_script : MonoBehaviour {
                 eventTimes.RemoveAt(0);
         }
         Vector3 z = new Vector3(mother_blob222.transform.position.x, mother_blob222.transform.position.y, mother_blob222.transform.position.z);
-        force = waveForce(z);
-        mother_blob222.transform.position = mother_blob222.transform.position + 1000 * force * Time.deltaTime;
+      //  force = waveForce(z);
+      //  mother_blob222.transform.position = mother_blob222.transform.position + 1000 * force * Time.deltaTime;
         //print(force);
      
     }

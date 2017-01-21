@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
 
         //rb.AddRelativeForce(-Vector3.forward * speed);
         scale = scale + scaleSpeed * Time.deltaTime;
-        transform.localScale = new Vector3(scale, scale, scale);
+        transform.localScale = new Vector3(scale, 3.0f, scale);
     }
 
     void OnTriggerStay(Collider c)
