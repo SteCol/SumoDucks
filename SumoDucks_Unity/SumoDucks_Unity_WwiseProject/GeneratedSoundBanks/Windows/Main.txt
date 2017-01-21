@@ -1,0 +1,20 @@
+Event	ID	Name			Wwise Object Path	Notes
+	145824316	wave_medium			\Default Work Unit\wave_medium	
+	431960276	wavebuildup_stop			\Default Work Unit\wavebuildup_stop	
+	729984210	amb_stop			\Default Work Unit\amb_stop	
+	1574979720	wavebuildup_start			\Default Work Unit\wavebuildup_start	
+	1697625845	fs_light			\Default Work Unit\fs_light	
+	2026842688	fs_heavy			\Default Work Unit\fs_heavy	
+	2381502256	amb_play			\Default Work Unit\amb_play	
+	2491838135	wave_light			\Default Work Unit\wave_light	
+	4259068396	wave_strong			\Default Work Unit\wave_strong	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	109867281	DK_wave_light	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_wave_light_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_wave_light		122944
+	401559340	DK_amb	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_amb_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\2D\DK_amb		4882496
+	496530663	DK_fs_heavy	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_fs_heavy_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_fs_heavy		56418
+	514329837	DK_wave_medium	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_wave_medium_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_wave_medium		140864
+	787905703	DK_wave_strong	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_wave_strong_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_wave_strong		277568
+	807228184	DK_wavebuildup	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_wavebuildup_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_wavebuildup		895040
+	828365205	DK_fs_light	C:\Users\MARTINEZ\Documents\SumoDucks\SumoDucks_Unity\SumoDucks_Unity_WwiseProject\.cache\Windows\SFX\DK_fs_light_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\3D\DK_fs_light		53696
+
