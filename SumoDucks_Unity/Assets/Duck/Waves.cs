@@ -46,7 +46,7 @@ public class Waves : MonoBehaviour {
         {
             angle = angle - angleSpeed * Time.deltaTime;
         }
-        else if (waveValue != 0){
+        else{
             if (waveValue != pastWaveValue)
             {
                 print("SHOOT");
