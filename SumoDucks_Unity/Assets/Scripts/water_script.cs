@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class water_script : MonoBehaviour {
 
-    float scale = 0.1f;
-    float speed = 1.0f;
+    float scale = 0.3f;
+    float speed = 5.0f;
     float noiseStrength = 1f;
     float noiseWalk = 1f;
 
     private Vector3[] baseHeight;
+    Mesh mesh;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    [Header("Plane sizes")]
+    public int width = 1;
+    public int height = 1;
+    public float xSize, ySize = 1;
+
+    // Use this for initialization
+    void Awake () {
+        mesh = GetComponent<MeshFilter>().mesh = ParametricPlane.GeneratePlane(width, height, xSize / 2, ySize / 2, 0, xSize, ySize);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
 
         if (baseHeight == null)
             baseHeight = mesh.vertices;
