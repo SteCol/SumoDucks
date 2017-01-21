@@ -6,7 +6,7 @@ public class Waves : MonoBehaviour {
     
 
     public float waveStrength;
-    private int playerNum;
+    public int playerNum;
     public float slerpValue;
     public float waveValue, pastWaveValue;
     public GameObject projectilePrefab;
@@ -51,20 +51,14 @@ public class Waves : MonoBehaviour {
 
         }
 
-        if (waveValue != pastWaveValue)
-        {
-            shoot = true;
-
-            pastWaveValue = waveValue;
-        }
 
 
-        if (shoot) {
+        if (waveValue != pastWaveValue) {
             print("SHOOT");
             GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
             projectile.transform.parent = this.transform.parent;
             projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
-            shoot = false;
+            pastWaveValue = waveValue;
 
         }
 
