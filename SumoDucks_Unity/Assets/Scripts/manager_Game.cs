@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class manager_Game : MonoBehaviour {
 
-    public bool game_in_progress = false;
+    public bool game_in_progress = true;
     public GameObject prefab_duck;
     public GameObject[] m_spown_points = new GameObject[2];
+    public manager_UI m_manager_ui;
 
 
     private List<GameObject> ducks = new List<GameObject>();
@@ -17,22 +18,26 @@ public class manager_Game : MonoBehaviour {
 	void Start () {
 
         reset_round();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (Input.GetKeyDown("enter"))
+        {
+            round_begin();
+        }
+    }
 
     public void round_begin()
     {
-        if(game_in_progress)
-        {
-            reset_round();
-        }
+
+        //hide welcome ui
+        GameObject welcome_text = m_manager_ui.m_elements_ui[0];
+        welcome_text.SetActive(false);
 
         //spown ducks
-
         for (int i = 0; i < m_spown_points.Length; i++) {
 
             Vector3 spown_position = m_spown_points[i].transform.position;
@@ -42,9 +47,12 @@ public class manager_Game : MonoBehaviour {
             //set duck properties
             GameObject duck_child = new_duck.GetComponent<ParentDuck>().children[1];
             duck_child.GetComponent<Movement>().playerNum = i + 1;
+            ducks.Add(duck_child);
             
 
         }
+
+        game_in_progress = true;
 
 
         
@@ -58,11 +66,26 @@ public class manager_Game : MonoBehaviour {
 
     public void reset_round()
     {
-        foreach (GameObject duck in ducks)
+        
+        if(game_in_progress)
         {
-            Destroy(duck);
+            //clear old ducks
+            foreach (GameObject duck in ducks)
+            {
+                Destroy(duck);
+            }
+            ducks.Clear();
+
+            //get welcome text
+            GameObject welcome_text = m_manager_ui.m_elements_ui[0];
+            welcome_text.SetActive(true);
+
+        } else
+        {
+            round_begin();
         }
-        ducks.Clear();
+
+        
 
 
     }

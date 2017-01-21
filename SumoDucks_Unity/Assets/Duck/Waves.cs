@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Waves : MonoBehaviour {
-    
-
-    public float waveStrength;
-    public int playerNum;
-    public float slerpValue;
-    public float waveValue, pastWaveValue;
-    public GameObject projectilePrefab;
-    public Vector3 projectileSpawn;
-
+    [Header("General info")]
     public GameObject controller;
-    public float damping;
+    public int playerNum;
+    public GameObject projectilePrefab;
+    public Transform projectileSpawner;
+    public GameObject dummyRotator;
 
-    public bool shoot, shootbump;
+    [Header("Waves")]
+    public float waveStrength;
+    public float waveValue, pastWaveValue;
 
+    [Header("Shoot timer and stuff")]
+    public bool shoot;
+    public float shootTimer;
+
+    [Header("Making Waves Animation")]
     public float angle;
     public float angleOffset;
+    public float angleSpeed;
 
-    public Transform projectileSpawner;
-    
+    [Header("Turning Motion")]
+    public float damping;
+
 
     // Use this for initialization
     void Start () {
@@ -36,21 +40,20 @@ public class Waves : MonoBehaviour {
 
         if (waveValue < 0 && angle < angleOffset)
         {
-            angle = angle + waveStrength * Time.deltaTime;
+            angle = angle + angleSpeed * Time.deltaTime;
         }
         else if (waveValue > 0 && angle > -angleOffset)
         {
-            angle = angle - waveStrength * Time.deltaTime;
+            angle = angle - angleSpeed * Time.deltaTime;
         }
         else {
             
             if (angle < 0)
-                angle = angle + waveStrength * Time.deltaTime;
+                angle = angle + angleSpeed * Time.deltaTime;
             if (angle > 0)
-                angle = angle - waveStrength * Time.deltaTime;
+                angle = angle - angleSpeed * Time.deltaTime;
 
         }
-
 
 
         if (waveValue != pastWaveValue) {
@@ -67,12 +70,14 @@ public class Waves : MonoBehaviour {
 
         if (controller.GetComponent<DucklingsGenerator>().ducklings.Count > 0)
         {
-            Quaternion rotation = Quaternion.LookRotation(controller.GetComponent<DucklingsGenerator>().ducklings[0].transform.position - this.transform.position);
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
+            
             foreach (GameObject d in controller.GetComponent<DucklingsGenerator>().ducklings) {
                 
-                d.transform.localEulerAngles = new Vector3(d.transform.eulerAngles.x, d.transform.eulerAngles.y, angle * waveStrength);
+                d.transform.localEulerAngles = new Vector3(d.transform.eulerAngles.x, d.transform.eulerAngles.y, angle * angleSpeed);
             }
         }
+
+        Quaternion rotation = Quaternion.LookRotation(dummyRotator.transform.position - this.transform.position);
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
     }
 }
