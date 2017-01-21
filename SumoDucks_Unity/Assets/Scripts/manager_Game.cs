@@ -5,6 +5,8 @@ using UnityEngine;
 public class manager_Game : MonoBehaviour {
 
     public bool game_in_progress = false;
+    public int player_lost = 0;
+
     public GameObject prefab_duck;
     public GameObject[] m_spown_points = new GameObject[2];
     public manager_UI m_manager_ui;
@@ -28,7 +30,20 @@ public class manager_Game : MonoBehaviour {
     public void reset_round()
     {
 
-        if (game_in_progress || m_first_boot)
+        if(player_lost == -1)
+        {
+            return;
+        }
+        else if( player_lost > 0 )
+        {
+          
+            m_manager_ui.show_text_playerWin(true,player_lost);
+            player_lost = -1;
+            game_in_progress = false;
+            StartCoroutine( delayed_restart() );
+
+        } 
+        else if ( game_in_progress || m_first_boot )
         {
 
             //show welcome ui
@@ -38,7 +53,7 @@ public class manager_Game : MonoBehaviour {
             m_first_boot = false;
 
         }
-        else
+        else if (game_in_progress == false)
         {
             round_begin();
             game_in_progress = true;
@@ -92,7 +107,13 @@ public class manager_Game : MonoBehaviour {
 
     public void exit_ring(int playerNumber)
     {
-        Debug.Log("Player " + playerNumber + " has exited the area");
+        if(game_in_progress)
+        {
+            Debug.Log("Player " + playerNumber + " has exited the area");
+            player_lost = playerNumber;
+            reset_round();
+        }
+        
     }
 
 
@@ -100,7 +121,13 @@ public class manager_Game : MonoBehaviour {
     {
         ducks.Add(duck);
 
+    }
 
+    IEnumerator delayed_restart ()
+    {
+        yield return new WaitForSeconds(2);
+        m_manager_ui.show_text_playerWin(false, 0);
+        player_lost = 0;
     }
 
 }
