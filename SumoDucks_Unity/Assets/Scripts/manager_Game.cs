@@ -33,10 +33,17 @@ public class manager_Game : MonoBehaviour {
         //spown ducks
 
         for (int i = 0; i < m_spown_points.Length; i++) {
+            Debug.Log(i);
+
+            Vector3 spown_position = m_spown_points[i].transform.position;
             GameObject new_duck = Instantiate(prefab_duck);
+            new_duck.transform.position = spown_position;
+            
+
         }
+
+
         
-        game_in_progress = true;
     }
 
     public void exit_ring(int playerNumber)
