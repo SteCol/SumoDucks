@@ -25,6 +25,8 @@
 				<Event Id="729984210" Name="amb_stop" ObjectPath="\Events\Default Work Unit\amb_stop" MaxAttenuation="0.000000"/>
 				<Event Id="2026842688" Name="fs_heavy" ObjectPath="\Events\Default Work Unit\fs_heavy"/>
 				<Event Id="1697625845" Name="fs_light" ObjectPath="\Events\Default Work Unit\fs_light"/>
+				<Event Id="202194903" Name="music_play" ObjectPath="\Events\Default Work Unit\music_play"/>
+				<Event Id="3227181061" Name="music_stop" ObjectPath="\Events\Default Work Unit\music_stop" MaxAttenuation="0.000000"/>
 				<Event Id="2491838135" Name="wave_light" ObjectPath="\Events\Default Work Unit\wave_light"/>
 				<Event Id="145824316" Name="wave_medium" ObjectPath="\Events\Default Work Unit\wave_medium"/>
 				<Event Id="4259068396" Name="wave_strong" ObjectPath="\Events\Default Work Unit\wave_strong"/>
@@ -39,6 +41,10 @@
 				<File Id="401559340" Language="SFX">
 					<ShortName>DK_amb.wav</ShortName>
 					<Path>SFX\DK_amb_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="432512304" Language="SFX">
+					<ShortName>duck_maxed_loop.wav</ShortName>
+					<Path>SFX\duck_maxed_loop_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="496530663" Language="SFX">
 					<ShortName>DK_fs_heavy.wav</ShortName>
@@ -59,6 +65,10 @@
 				<File Id="828365205" Language="SFX">
 					<ShortName>DK_fs_light.wav</ShortName>
 					<Path>SFX\DK_fs_light_9E69E797.wem</Path>
+				</File>
+				<File Id="839582366" Language="SFX">
+					<ShortName>duck_maxed_begin.wav</ShortName>
+					<Path>SFX\duck_maxed_begin_4B8CC0C5.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

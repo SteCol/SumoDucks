@@ -17,6 +17,8 @@ namespace AK
         static const AkUniqueID AMB_STOP = 729984210U;
         static const AkUniqueID FS_HEAVY = 2026842688U;
         static const AkUniqueID FS_LIGHT = 1697625845U;
+        static const AkUniqueID MUSIC_PLAY = 202194903U;
+        static const AkUniqueID MUSIC_STOP = 3227181061U;
         static const AkUniqueID WAVE_LIGHT = 2491838135U;
         static const AkUniqueID WAVE_MEDIUM = 145824316U;
         static const AkUniqueID WAVE_STRONG = 4259068396U;
