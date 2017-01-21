@@ -21,10 +21,10 @@ public class manager_Game : MonoBehaviour {
         game_in_progress = true;
     }
 
-    public void exit_ring()
+    public void exit_ring(int playerNumber)
     {
         game_in_progress = false;
-
+        Debug.Log("Player " + playerNumber + " has exited the area");
     }
 
 }
