@@ -5,7 +5,11 @@ using UnityEngine;
 public class manager_Game : MonoBehaviour {
 
     public bool game_in_progress = false;
-    public GameObject[] ducks;
+    public GameObject prefab_duck;
+
+    private List<GameObject> ducks = new List<GameObject>();
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +39,8 @@ public class manager_Game : MonoBehaviour {
 
     public void add_duck(GameObject duck)
     {
-
+        game_in_progress = true;
+        ducks.Add(duck);
     }
 
 }
