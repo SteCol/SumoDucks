@@ -5,7 +5,7 @@ using UnityEngine;
 public class Music : MonoBehaviour {
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         AkSoundEngine.PostEvent("music_play", this.gameObject);
 
     }
