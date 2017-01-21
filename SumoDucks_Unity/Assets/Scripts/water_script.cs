@@ -10,19 +10,23 @@ public class water_script : MonoBehaviour {
     float noiseWalk = 1f;
     public float srcx1 = 0f;
     public float srcy1 = 0f;
+    public Vector3 force;
 
     public float srcx2 = 0f;
     public float srcy2 = 0f;
+    public GameObject mother_blob222;
 
     private Vector3[] baseHeight;
     Mesh mesh;
+    List<float> eventTimes;
+   List<float> eventPlaces;
 
     [Header("Plane sizes")]
     public int width = 1;
     public int height = 1;
     public float xSize, ySize = 1;
     public float eventTime;
-    float eventTimes;
+    
     public float waveSize = 1f;
 
     Vector3 eventPos;
@@ -31,11 +35,14 @@ public class water_script : MonoBehaviour {
         mesh = GetComponent<MeshFilter>().mesh = ParametricPlane.GeneratePlane(width, height, xSize / 2, ySize / 2, 0, xSize, ySize);
         waveSize = 1f;
 
-}
+     }
 
-// Update is called once per frame
-void Update () {
-        
+    
+
+    // Update is called once per frame
+    void Update () {
+
+
         if (baseHeight == null)
             baseHeight = mesh.vertices;
 
@@ -67,6 +74,27 @@ void Update () {
             eventPos.y = srcy1;
 
         }
+        Vector3 z = new Vector3(mother_blob222.transform.position.x, mother_blob222.transform.position.y, mother_blob222.transform.position.z);
+        force = waveForce(z);
+        mother_blob222.transform.position = mother_blob222.transform.position + 1000 * force * Time.deltaTime;
+        print(force);
+     
     }
+   public Vector3 waveForce(Vector3 position)
+    {
+
+        //Vector3 z = new Vector3(mother_blob2.position);
+        Vector3 force; //= position;
+        float distance1 = Mathf.Sqrt(Mathf.Pow(position.x - eventPos.x, 2) + Mathf.Pow(position.z - eventPos.y, 2));
+        float wavecentre = Mathf.Abs(((Time.time - eventTime) * speed) - distance1);
+        float forceAmplitude = Mathf.Cos(wavecentre * 3.14f) * (((wavecentre < 1) ? (1f - wavecentre) : 0) - 0) * waveSize;
+        force.x = position.x - eventPos.x;
+        force.y = 0;
+        force.z = position.z - eventPos.y;
+        force = Vector3.Normalize(force);
+        force = force * forceAmplitude;
+        
+        return force;
     }
+}
 
