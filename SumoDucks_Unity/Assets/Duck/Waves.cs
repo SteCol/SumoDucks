@@ -62,9 +62,6 @@ public class Waves : MonoBehaviour {
                 angle = angle - angleSpeed * Time.deltaTime;
         }
 
-        
-        
-
         if ((waveAllowed == true && wave == true))
         {
             print("SHOOT");
