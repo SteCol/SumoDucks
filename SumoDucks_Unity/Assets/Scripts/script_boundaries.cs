@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class script_boundaries : MonoBehaviour {
 
+    public manager_Game m_game_manager;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,12 +16,14 @@ public class script_boundaries : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("test");
+        Debug.Log("enter player " + col.name);
     }
     void OnTriggerExit(Collider col)
     {
-        Debug.Log(col.name);
+        int number = col.GetComponent<temp_duck>().m_player_number;
+        m_game_manager.exit_ring(number);
+        
     }
 }
