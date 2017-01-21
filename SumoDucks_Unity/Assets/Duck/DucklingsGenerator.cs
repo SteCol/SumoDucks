@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DucklingsGenerator : MonoBehaviour {
+public class DucklingsGenerator : MonoBehaviour
+{
     public GameObject ducklingContainer;
 
     public int desiredAmount, currentAmount;
@@ -10,10 +11,10 @@ public class DucklingsGenerator : MonoBehaviour {
     public GameObject ducklingPrefab;
     public List<GameObject> ducklings;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         ducklings.Clear();
-
 
         for (int d = 0; d < desiredAmount; d++)
         {
@@ -30,16 +31,19 @@ public class DucklingsGenerator : MonoBehaviour {
                 ducklings[d].GetComponent<FollowScript>().toFollow = this.gameObject;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-        /*
-        if (desiredAmount != currentAmount) {
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (desiredAmount != currentAmount)
+        {
             ducklings.Clear();
 
             foreach (GameObject d in GameObject.FindGameObjectsWithTag("Duckling"))
             {
-                Destroy(d);
+                if (d.transform.parent == ducklingContainer.transform)
+                    Destroy(d);
             }
 
             for (int d = 0; d < desiredAmount; d++)
@@ -59,6 +63,6 @@ public class DucklingsGenerator : MonoBehaviour {
 
             currentAmount = desiredAmount;
         }
-        */
-	}
+
+    }
 }
