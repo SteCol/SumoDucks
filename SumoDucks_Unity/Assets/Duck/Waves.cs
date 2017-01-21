@@ -8,6 +8,7 @@ public class Waves : MonoBehaviour {
     public float waveStrength;
     public int playerNum;
     public float slerpValue;
+    public float waveValue;
 
     public GameObject controller;
     public float damping;
@@ -23,7 +24,7 @@ public class Waves : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float waveValue = Input.GetAxis("Player_" + playerNum + "_Wave");
+         waveValue = Input.GetAxis("Player_" + playerNum + "_Wave");
 
         if (waveValue < 0 && angle < angleOffset)
         {
@@ -34,7 +35,7 @@ public class Waves : MonoBehaviour {
             angle = angle - waveStrength * Time.deltaTime;
         }
         else {
-
+            shoot = true;
             
             if (angle < 0)
                 angle = angle + waveStrength * Time.deltaTime;
@@ -43,13 +44,7 @@ public class Waves : MonoBehaviour {
 
         }
 
-        if (waveValue != 0)
-        {
-            shoot = true;
-        }
-        else {
-            shoot = false;
-        }
+        
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
 
