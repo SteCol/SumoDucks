@@ -8,7 +8,7 @@ public class LookAtScript : MonoBehaviour {
 
     void Update()
     {
-        Quaternion rotation = Quaternion.LookRotation(lookAt.transform.position - this.transform.position);
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
+        //Quaternion rotation = Quaternion.LookRotation(lookAt.transform.position - this.transform.position);
+        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
     }
 }
