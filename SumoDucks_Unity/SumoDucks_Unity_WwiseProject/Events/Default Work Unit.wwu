@@ -124,39 +124,6 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="die" ID="{5B80B4AC-FFBE-494A-916F-DD92FF42D300}">
-					<ChildrenList>
-						<Action Name="Play" ID="{F836C035-B680-4667-B399-D1121D7B7C32}" ShortID="493097394" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{5F81FBC1-5C55-45E0-8EEE-FA7B8CD615E6}" Global="false">
-									<ObjectRef Name="Die" ID="{EC4197A7-EED9-4494-8A3D-103FA87E77E0}" WorkUnitID="{D3D10D12-3076-44D0-8E9D-85F8275894EF}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="kwak" ID="{330E3A8A-6446-41D6-A512-CCA1401C6E4D}">
-					<ChildrenList>
-						<Action Name="Play" ID="{F3562ED9-825A-4792-B972-F66936BF0C38}" ShortID="233320006" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{78ECFF0F-410B-4E72-831E-B88D3173D02D}" Global="false">
-									<ObjectRef Name="Kwak" ID="{BBFEB6A9-A524-483C-B1EB-D492675CA3E3}" WorkUnitID="{D3D10D12-3076-44D0-8E9D-85F8275894EF}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="tiger" ID="{4437D545-E812-4748-BA7E-BCFAC07BF930}">
-					<ChildrenList>
-						<Action Name="Play" ID="{17284DD7-F9BE-49C3-AA09-76FC2F88CF90}" ShortID="769755767" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{7A1D0084-626E-49CA-8AD8-791A2680E361}" Global="false">
-									<ObjectRef Name="Tiger" ID="{7A12F852-0E92-419E-86C0-F4CF5238A3AB}" WorkUnitID="{D3D10D12-3076-44D0-8E9D-85F8275894EF}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
