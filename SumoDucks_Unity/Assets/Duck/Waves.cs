@@ -14,6 +14,7 @@ public class Waves : MonoBehaviour {
     [Header("Waves")]
     public float waveStrength;
     public float waveValue, pastWaveValue;
+    public bool waveAllowed;
 
     [Header("Shoot timer and stuff")]
     public bool shoot;
@@ -32,6 +33,7 @@ public class Waves : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        waveAllowed = true;
         playerNum = controller.GetComponent<Movement>().playerNum;
 	}
 	
@@ -49,29 +51,32 @@ public class Waves : MonoBehaviour {
             angle = angle - angleSpeed * Time.deltaTime;
         }
         else{
-            if (waveValue != pastWaveValue)
-            {
-                print("SHOOT");
-                //GetComponent<WaveAudio>().Play();
-                //GetComponent<AkTriggerEnable>();
-
-                AkSoundEngine.PostEvent("wave_light", this.gameObject);
-                foreach (Transform p in projectileSpawner)
-                {
-
-                    GameObject projectile = (GameObject)Instantiate(projectilePrefab, p.position, p.rotation);
-                    projectile.transform.parent = this.transform.parent;
-                    projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
-                    pastWaveValue = waveValue;
-                }
-
-            }
 
             if (angle < 0 && waveValue == 0)
                 angle = angle + angleSpeed * Time.deltaTime;
             if (angle > 0 && waveValue == 0)
                 angle = angle - angleSpeed * Time.deltaTime;
 
+            if (waveValue != pastWaveValue && waveAllowed == true)
+            {
+                print("SHOOT");
+                //GetComponent<WaveAudio>().Play();
+                //GetComponent<AkTriggerEnable>();
+                AkSoundEngine.PostEvent("wave_light", this.gameObject);
+                foreach (Transform p in projectileSpawner)
+                {
+                    GameObject projectile = (GameObject)Instantiate(projectilePrefab, p.position, p.rotation);
+                    projectile.transform.parent = this.transform.parent;
+                    projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
+                    pastWaveValue = waveValue;
+                }
+                waveAllowed = false;
+            }
+        }
+
+        if (angle < 0.5f && angle > -0.5f)
+        {
+            waveAllowed = true;
         }
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);

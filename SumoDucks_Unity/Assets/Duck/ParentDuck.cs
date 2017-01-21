@@ -15,4 +15,8 @@ public class ParentDuck : MonoBehaviour {
         if (destroyDuck)
         DestroyDuck();
     }
+
+    public void ExitArena() {
+
+    }
 }
