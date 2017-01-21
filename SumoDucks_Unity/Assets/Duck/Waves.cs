@@ -8,7 +8,9 @@ public class Waves : MonoBehaviour {
     public float waveStrength;
     public int playerNum;
     public float slerpValue;
-    public float waveValue;
+    public float waveValue, pastWaveValue;
+    public GameObject projectilePrefab;
+    public Vector3 projectileSpawn;
 
     public GameObject controller;
     public float damping;
@@ -17,6 +19,7 @@ public class Waves : MonoBehaviour {
 
     public float angle;
     public float angleOffset;
+    
 
     // Use this for initialization
     void Start () {
@@ -35,7 +38,6 @@ public class Waves : MonoBehaviour {
             angle = angle - waveStrength * Time.deltaTime;
         }
         else {
-            shoot = true;
             
             if (angle < 0)
                 angle = angle + waveStrength * Time.deltaTime;
@@ -44,6 +46,17 @@ public class Waves : MonoBehaviour {
 
         }
 
+        if (waveValue != pastWaveValue)
+        {
+            shoot = true;
+            print("SHOOT");
+            GameObject projectile = Instantiate(projectilePrefab, this.transform.position , this.transform.rotation);
+            projectile.transform.parent = this.transform.parent;
+            pastWaveValue = waveValue;
+        }
+        else {
+            shoot = false;
+        }
         
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
