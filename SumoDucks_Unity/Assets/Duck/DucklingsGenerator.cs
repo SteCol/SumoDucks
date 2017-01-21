@@ -10,13 +10,30 @@ public class DucklingsGenerator : MonoBehaviour {
     public GameObject ducklingPrefab;
     public List<GameObject> ducklings;
 
-
 	// Use this for initialization
 	void Start () {
+        ducklings.Clear();
+
+
+        for (int d = 0; d < desiredAmount; d++)
+        {
+            GameObject duckling = Instantiate(ducklingPrefab, this.transform.position, Quaternion.identity);
+            ducklings.Add(duckling);
+            duckling.transform.parent = ducklingContainer.transform;
+        }
+
+        for (int d = 0; d < ducklings.Count; d++)
+        {
+            if (d - 1 >= 0)
+                ducklings[d].GetComponent<FollowScript>().toFollow = ducklings[d - 1];
+            else
+                ducklings[d].GetComponent<FollowScript>().toFollow = this.gameObject;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
+        /*
         if (desiredAmount != currentAmount) {
             ducklings.Clear();
 
@@ -42,5 +59,6 @@ public class DucklingsGenerator : MonoBehaviour {
 
             currentAmount = desiredAmount;
         }
+        */
 	}
 }

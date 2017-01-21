@@ -6,9 +6,11 @@ public class Waves : MonoBehaviour {
     
 
     public float waveStrength;
-    public int playerNum;
+    private int playerNum;
     public float slerpValue;
-    public float waveValue;
+    public float waveValue, pastWaveValue;
+    public GameObject projectilePrefab;
+    public Vector3 projectileSpawn;
 
     public GameObject controller;
     public float damping;
@@ -18,13 +20,19 @@ public class Waves : MonoBehaviour {
     public float angle;
     public float angleOffset;
 
+    public Transform projectileSpawner;
+    
+
     // Use this for initialization
     void Start () {
+
+        playerNum = controller.GetComponent<Movement>().playerNum;
 	}
 	
 	// Update is called once per frame
 	void Update () {
          waveValue = Input.GetAxis("Player_" + playerNum + "_Wave");
+
 
         if (waveValue < 0 && angle < angleOffset)
         {
@@ -35,7 +43,6 @@ public class Waves : MonoBehaviour {
             angle = angle - waveStrength * Time.deltaTime;
         }
         else {
-            shoot = true;
             
             if (angle < 0)
                 angle = angle + waveStrength * Time.deltaTime;
@@ -44,7 +51,23 @@ public class Waves : MonoBehaviour {
 
         }
 
-        
+        if (waveValue != pastWaveValue)
+        {
+            shoot = true;
+
+            pastWaveValue = waveValue;
+        }
+
+
+        if (shoot) {
+            print("SHOOT");
+            GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
+            projectile.transform.parent = this.transform.parent;
+            projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
+            shoot = false;
+
+        }
+
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
 

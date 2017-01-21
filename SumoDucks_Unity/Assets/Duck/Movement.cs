@@ -21,6 +21,6 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rb.velocity = new Vector3(Input.GetAxis("Player_" + playerNum + "_Horizontal") * movSpeed, 0, Input.GetAxis("Player_" + playerNum + "_Vertical") * movSpeed);
+        rb.velocity = new Vector3(Input.GetAxis("Player_" + playerNum + "_Horizontal") * movSpeed, rb.velocity.y, Input.GetAxis("Player_" + playerNum + "_Vertical") * movSpeed);
     }
 }
