@@ -5,6 +5,7 @@ using UnityEngine;
 public class manager_Game : MonoBehaviour {
 
     public bool game_in_progress = false;
+    public GameObject[] ducks;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,16 @@ public class manager_Game : MonoBehaviour {
     {
         game_in_progress = false;
         Debug.Log("Player " + playerNumber + " has exited the area");
+    }
+
+    public void reset_round()
+    {
+        game_in_progress = true;
+    }
+
+    public void add_duck(GameObject duck)
+    {
+
     }
 
 }
