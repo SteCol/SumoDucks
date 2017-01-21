@@ -7,6 +7,7 @@ public class manager_Game : MonoBehaviour {
     public bool game_in_progress = false;
     public GameObject prefab_duck;
     public GameObject[] m_spown_points = new GameObject[2];
+    public manager_UI m_manager_ui;
 
 
     private List<GameObject> ducks = new List<GameObject>();
@@ -17,22 +18,33 @@ public class manager_Game : MonoBehaviour {
 	void Start () {
 
         reset_round();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (Input.GetKeyDown("enter"))
+        {
+            round_begin();
+        }
+    }
 
     public void round_begin()
     {
-        if(game_in_progress)
+
+        //clear old ducks
+        foreach (GameObject duck in ducks)
         {
-            reset_round();
+            Destroy(duck);
         }
+        ducks.Clear();
+
+        //hide welcome ui
+        GameObject welcome_text = m_manager_ui.m_elements_ui[0];
+        welcome_text.SetActive(false);
 
         //spown ducks
-
         for (int i = 0; i < m_spown_points.Length; i++) {
 
             Vector3 spown_position = m_spown_points[i].transform.position;
@@ -58,11 +70,11 @@ public class manager_Game : MonoBehaviour {
 
     public void reset_round()
     {
-        foreach (GameObject duck in ducks)
-        {
-            Destroy(duck);
-        }
-        ducks.Clear();
+        
+
+        //get welcome text
+        GameObject welcome_text = m_manager_ui.m_elements_ui[0];
+        welcome_text.SetActive(true);
 
 
     }
