@@ -46,31 +46,28 @@ public class Waves : MonoBehaviour {
         {
             angle = angle - angleSpeed * Time.deltaTime;
         }
-        else {
-            
-            if (angle < 0)
+        else if (waveValue != 0){
+            if (waveValue != pastWaveValue)
+            {
+                print("SHOOT");
+                GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
+                projectile.transform.parent = this.transform.parent;
+                projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
+                pastWaveValue = waveValue;
+
+            }
+
+            if (angle < 0 && waveValue == 0)
                 angle = angle + angleSpeed * Time.deltaTime;
-            if (angle > 0)
+            if (angle > 0 && waveValue == 0)
                 angle = angle - angleSpeed * Time.deltaTime;
 
         }
-
-
-        if (waveValue != pastWaveValue) {
-            print("SHOOT");
-            GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
-            projectile.transform.parent = this.transform.parent;
-            projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
-            pastWaveValue = waveValue;
-
-        }
-
 
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (angle * -1 )* waveStrength);
 
         if (controller.GetComponent<DucklingsGenerator>().ducklings.Count > 0)
         {
-            
             foreach (GameObject d in controller.GetComponent<DucklingsGenerator>().ducklings) {
                 
                 d.transform.localEulerAngles = new Vector3(d.transform.eulerAngles.x, d.transform.eulerAngles.y, angle * angleSpeed);

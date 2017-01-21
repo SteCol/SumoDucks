@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParentDuck : MonoBehaviour {
+    public bool destroyDuck;
 
     public GameObject[] children = new GameObject[3];
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void DestroyDuck() {
+        Destroy(this.gameObject);
+    }
+
+    void Update() {
+        if (destroyDuck)
+        DestroyDuck();
+    }
 }
