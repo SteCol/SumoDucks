@@ -19,6 +19,8 @@ public class Waves : MonoBehaviour {
 
     public float angle;
     public float angleOffset;
+
+    public Transform projectileSpawner;
     
 
     // Use this for initialization
@@ -28,6 +30,7 @@ public class Waves : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
          waveValue = Input.GetAxis("Player_" + playerNum + "_Wave");
+
 
         if (waveValue < 0 && angle < angleOffset)
         {
@@ -50,8 +53,9 @@ public class Waves : MonoBehaviour {
         {
             shoot = true;
             print("SHOOT");
-            GameObject projectile = Instantiate(projectilePrefab, this.transform.position , this.transform.rotation);
+            GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
             projectile.transform.parent = this.transform.parent;
+            projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
             pastWaveValue = waveValue;
         }
         else {

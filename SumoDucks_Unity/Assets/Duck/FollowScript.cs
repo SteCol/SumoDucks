@@ -23,11 +23,17 @@ public class FollowScript : MonoBehaviour {
     void SmoothLookAt() {
         Quaternion rotation = Quaternion.LookRotation(toFollow.transform.position - this.transform.position);
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
-        dist = Vector3.Distance(this.transform.position, toFollow.transform.position);
-        
 
-        if (dist > distance) {
-            this.transform.Translate(Vector3.forward * speed * dist * Time.deltaTime);
+        dist = Vector3.Distance(this.transform.position, toFollow.transform.position);
+
+        if (dist > distance)
+        {
+            //this.transform.Translate(Vector3.forward * speed * dist * Time.deltaTime);
+            GetComponent<Rigidbody>().velocity = (transform.forward * dist * speed);
+        }
+        else {
+            GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+
         }
     }
 }
