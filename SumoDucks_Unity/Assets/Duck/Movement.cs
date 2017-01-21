@@ -10,10 +10,6 @@ public class Movement : MonoBehaviour {
     public float movSpeed;
     public Rigidbody rb;
 
-    [Header("Movement")]
-    private bool x;
-    public bool forward, backward, left, right, a, b;
-
 	// Use this for initialization
 	void Start () {
         rb = this.GetComponent<Rigidbody>();
