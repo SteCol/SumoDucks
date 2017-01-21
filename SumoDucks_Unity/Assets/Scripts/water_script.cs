@@ -8,6 +8,11 @@ public class water_script : MonoBehaviour {
     float speed = 5.0f;
     float noiseStrength = 1f;
     float noiseWalk = 1f;
+    public float srcx1 = 0f;
+    public float srcy1 = 0f;
+
+    public float srcx2 = 0f;
+    public float srcy2 = 0f;
 
     private Vector3[] baseHeight;
     Mesh mesh;
@@ -32,8 +37,14 @@ public class water_script : MonoBehaviour {
         for (int i = 0; i < vertices.Length; i++)
         {
             Vector3 vertex = baseHeight[i];
-            vertex.y += Mathf.Sin(Time.time * speed + baseHeight[i].x + baseHeight[i].y + baseHeight[i].z) * scale;
-            vertex.y += Mathf.PerlinNoise(baseHeight[i].x + noiseWalk, baseHeight[i].y + Mathf.Sin(Time.time * 0.1f)) * noiseStrength;
+            //vertex.y += Mathf.Sin(Time.time * speed + baseHeight[i].x + baseHeight[i].y + baseHeight[i].z) * scale;
+            float distance1 = Mathf.Sqrt(Mathf.Pow(baseHeight[i].x - srcx1, 2) + Mathf.Pow(baseHeight[i].z - srcy1, 2));
+            vertex.y += (Mathf.Sin(Time.time * -speed + 2f * distance1 + baseHeight[i].y * 0 ) * scale) *1 / (distance1 + 1f);
+
+            float distance2 = Mathf.Sqrt(Mathf.Pow(baseHeight[i].x - srcx2, 2) + Mathf.Pow(baseHeight[i].z - srcy2, 2));
+            vertex.y += Mathf.Sin(Time.time * -speed + 3f*distance2 + baseHeight[i].y * 0) * scale *1/ (distance2+1f);
+
+            //vertex.y += Mathf.PerlinNoise(baseHeight[i].x + noiseWalk, baseHeight[i].y + Mathf.Sin(Time.time * 0.1f)) * noiseStrength;
             vertices[i] = vertex;
         }
         mesh.vertices = vertices;
