@@ -102,6 +102,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="music_play" ID="{548CCDCA-153F-4240-92BB-9E1FAD264007}">
+					<ChildrenList>
+						<Action Name="Play" ID="{1F1272E1-279E-422C-90AC-D4966DA548BB}" ShortID="44929387" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{6B680DF9-D635-41FC-A36C-55FCD48505AF}" Global="false">
+									<ObjectRef Name="LevelMusic" ID="{CD0BA6A0-C08A-475B-A3D3-5EA72110A95A}" WorkUnitID="{399FD049-5DF6-4B41-8C13-D9A001BDF027}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="music_stop" ID="{A2C73110-0529-4343-8886-0E85827BDCE2}">
+					<ChildrenList>
+						<Action Name="Stop" ID="{F9B71FF3-46DC-42BC-A922-5059404BC50C}" ShortID="50436167" Type="Stop" Scope="One" Global="true">
+							<ElementList>
+								<Element ID="{23D908E5-147C-4D46-A090-B6FFCC81B54C}" Global="true">
+									<ObjectRef Name="LevelMusic" ID="{CD0BA6A0-C08A-475B-A3D3-5EA72110A95A}" WorkUnitID="{399FD049-5DF6-4B41-8C13-D9A001BDF027}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

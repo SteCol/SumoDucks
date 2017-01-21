@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
             {
                 c.GetComponent<Rigidbody>().AddExplosionForce(force * 50, this.transform.position, scale);
             }
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
 
         }
         else if (projectileMode == projectileMode.Center)
