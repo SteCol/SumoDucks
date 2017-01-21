@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class script_boundaries : MonoBehaviour {
+public class temp_duck : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,13 +13,4 @@ public class script_boundaries : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    private void OnTriggerEnter()
-    {
-        Debug.Log("test");
-    }
-    void OnTriggerExit(Collider col)
-    {
-        Debug.Log(col.name);
-    }
 }
