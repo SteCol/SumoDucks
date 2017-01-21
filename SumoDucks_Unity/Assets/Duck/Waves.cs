@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Waves : MonoBehaviour {
     [Header("General info")]
     public GameObject controller;
     public int playerNum;
     public GameObject projectilePrefab;
-    public Transform projectileSpawner;
+    public List<Transform>projectileSpawner;
     public GameObject dummyRotator;
 
     [Header("Waves")]
@@ -26,10 +27,11 @@ public class Waves : MonoBehaviour {
     [Header("Turning Motion")]
     public float damping;
 
+    [Header("AudioSources")]
+    public AudioSource audioSource;
 
     // Use this for initialization
     void Start () {
-
         playerNum = controller.GetComponent<Movement>().playerNum;
 	}
 	
@@ -50,10 +52,18 @@ public class Waves : MonoBehaviour {
             if (waveValue != pastWaveValue)
             {
                 print("SHOOT");
-                GameObject projectile = (GameObject)Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
-                projectile.transform.parent = this.transform.parent;
-                projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
-                pastWaveValue = waveValue;
+                //GetComponent<WaveAudio>().Play();
+                //GetComponent<AkTriggerEnable>();
+
+                AkSoundEngine.PostEvent("wave_light", this.gameObject);
+                foreach (Transform p in projectileSpawner)
+                {
+
+                    GameObject projectile = (GameObject)Instantiate(projectilePrefab, p.position, p.rotation);
+                    projectile.transform.parent = this.transform.parent;
+                    projectile.GetComponent<Projectile>().generatedFrom = this.gameObject;
+                    pastWaveValue = waveValue;
+                }
 
             }
 
