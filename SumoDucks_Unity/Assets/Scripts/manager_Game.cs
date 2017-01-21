@@ -39,8 +39,8 @@ public class manager_Game : MonoBehaviour {
             new_duck.transform.position = spown_position;
 
             //set duck properties
-            GameObject duck_child = new_duck.GetComponent<ParentDuck>().children[0];
-            duck_child.GetComponent<Waves>().playerNum = i + 1;
+            GameObject duck_child = new_duck.GetComponent<ParentDuck>().children[1];
+            duck_child.GetComponent<Movement>().playerNum = i + 1;
             
 
         }
