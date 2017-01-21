@@ -22,6 +22,7 @@ public class water_script : MonoBehaviour {
     public int height = 1;
     public float xSize, ySize = 1;
     public float eventTime;
+    public float waveSize=1;
     Vector3 eventPos;
     // Use this for initialization
     void Awake () {
@@ -39,12 +40,12 @@ public class water_script : MonoBehaviour {
         {
             Vector3 vertex = baseHeight[i];
             //vertex.y += Mathf.Sin(Time.time * speed + baseHeight[i].x + baseHeight[i].y + baseHeight[i].z) * scale;
-            float distance1 = Mathf.Sqrt(Mathf.Pow(baseHeight[i].x - srcx1, 2) + Mathf.Pow(baseHeight[i].z - srcy1, 2));
+            float distance1 = Mathf.Sqrt(Mathf.Pow(baseHeight[i].x - eventPos.x, 2) + Mathf.Pow(baseHeight[i].z - eventPos.y, 2));
             //   vertex.y += (Mathf.Sin(Time.time * -speed + 2f * distance1 + baseHeight[i].y * 0 ) * scale) *1 / (distance1 + 1f);
 
             //vertex.y += (Mathf.Sin((Time.time-eventTime) * -speed + 2f * (distance1- (Time.time - eventTime)) + baseHeight[i].y * 0) * scale) * 1 / (distance1 + 1f);
-            float wavecentre = Mathf.Pow(((Time.time - eventTime * -speed) - distance1), 2);
-            vertex.y = Mathf.Cos(wavecentre)*((wavecentre < 3.14/2 ) ? 1:0)  ;
+            float wavecentre = Mathf.Pow((((Time.time - eventTime) * speed) - distance1), 2);
+            vertex.y = Mathf.Cos(wavecentre)*(((wavecentre < 3.14 ) ? 3.14f:0)-0) * waveSize ;
 
             float distance2 = Mathf.Sqrt(Mathf.Pow(baseHeight[i].x - srcx2, 2) + Mathf.Pow(baseHeight[i].z - srcy2, 2));
           //  vertex.y += Mathf.Sin(Time.time * -speed + 3f*distance2 + baseHeight[i].y * 0) * scale *1/ (distance2 + 1f);
@@ -58,8 +59,8 @@ public class water_script : MonoBehaviour {
         {
             print("k has been pressed");
             eventTime = Time.time;
-            eventPos.X = srcx1;
-            eventPos = srcx1;
+            eventPos.x = srcx1;
+            eventPos.y = srcy1;
 
         }
     }
