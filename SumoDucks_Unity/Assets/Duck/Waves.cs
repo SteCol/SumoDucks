@@ -40,13 +40,20 @@ public class Waves : MonoBehaviour {
                 angle = angle - waveStrength * Time.deltaTime;
         }
 
+        if (angle < 0)
+        {
+            //angle = -angle;
+        }
+
         this.transform.localEulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle * waveStrength);
+
 
         if (controller.GetComponent<DucklingsGenerator>().ducklings.Count > 0)
         {
             Quaternion rotation = Quaternion.LookRotation(controller.GetComponent<DucklingsGenerator>().ducklings[0].transform.position - this.transform.position);
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
             foreach (GameObject d in controller.GetComponent<DucklingsGenerator>().ducklings) {
+                
                 d.transform.localEulerAngles = new Vector3(d.transform.eulerAngles.x, d.transform.eulerAngles.y, angle * waveStrength);
             }
         }

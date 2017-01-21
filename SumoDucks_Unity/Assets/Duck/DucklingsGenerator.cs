@@ -27,7 +27,7 @@ public class DucklingsGenerator : MonoBehaviour {
 
             for (int d = 0; d < desiredAmount; d++)
             {
-                GameObject duckling = Instantiate(ducklingPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                GameObject duckling = Instantiate(ducklingPrefab, this.transform.position, Quaternion.identity);
                 ducklings.Add(duckling);
                 duckling.transform.parent = ducklingContainer.transform;
             }
