@@ -68,6 +68,8 @@ public class Waves : MonoBehaviour {
             //GetComponent<WaveAudio>().Play();
             //GetComponent<AkTriggerEnable>();
             AkSoundEngine.PostEvent("wave_light", this.gameObject);
+            AkSoundEngine.PostEvent("kwak", this.gameObject);
+
             foreach (Transform p in projectileSpawner)
             {
                 GameObject projectile = (GameObject)Instantiate(projectilePrefab, p.position, p.rotation);
