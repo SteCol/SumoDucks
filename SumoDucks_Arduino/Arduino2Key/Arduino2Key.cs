@@ -125,9 +125,9 @@ namespace Arduino2Key
             // Coin inserted
             if (input == "TIGGER")
             {
-                InputSimulator.SimulateKeyDown(VirtualKeyCode.VK_X);
+                InputSimulator.SimulateKeyDown(VirtualKeyCode.RETURN);
                 Thread.Sleep(50);
-                InputSimulator.SimulateKeyUp(VirtualKeyCode.VK_X);
+                InputSimulator.SimulateKeyUp(VirtualKeyCode.RETURN);
             }
             else
             {
@@ -142,15 +142,15 @@ namespace Arduino2Key
                     switch (strMessageValue[0])
                     {
                         case "X1":
-                            SimulateInput(intX1, intNewValue, 10, VirtualKeyCode.VK_D, VirtualKeyCode.VK_A);
+                            SimulateInput(intX1, intNewValue, 10, VirtualKeyCode.VK_D, VirtualKeyCode.VK_Q);
                             intX1 = intNewValue;
                             break;
                         case "Y1":
-                            SimulateInput(intY1, intNewValue, 10, VirtualKeyCode.VK_S, VirtualKeyCode.VK_W);
+                            SimulateInput(intY1, intNewValue, 10, VirtualKeyCode.VK_S, VirtualKeyCode.VK_Z);
                             intY1 = intNewValue;
                             break;
                         case "Z1":
-                            SimuateKey(intZ1, intNewValue, 100, VirtualKeyCode.VK_F, VirtualKeyCode.VK_G);
+                            SimuateKey(intZ1, intNewValue, 100, VirtualKeyCode.VK_G, VirtualKeyCode.VK_H);
                             intZ1 = intNewValue;
                             break;
                         case "X2":
@@ -162,7 +162,7 @@ namespace Arduino2Key
                             intY2 = intNewValue;
                             break;
                         case "Z2":
-                            SimuateKey(intZ2, intNewValue, 100, VirtualKeyCode.VK_1, VirtualKeyCode.VK_2);
+                            SimuateKey(intZ2, intNewValue, 100, VirtualKeyCode.VK_L, VirtualKeyCode.VK_M);
                             intZ2 = intNewValue;
                             break;
                     }
