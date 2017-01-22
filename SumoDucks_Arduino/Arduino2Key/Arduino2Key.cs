@@ -28,6 +28,15 @@ namespace Arduino2Key
             Thread readThread = new Thread(ReadSerial);
             _serialPort = new SerialPort();
 
+            // Set a default title and ask for a better one
+            Console.Title = "Arduino2Key - #GGJ17";
+            Console.Write("Give this thing a name: ");
+            strTemp = Console.ReadLine();
+            if (!string.IsNullOrEmpty(strTemp))
+            {
+                Console.Title = strTemp;
+            }
+
             // Ask for port and baud
             Console.Write("Select active COM (COM6): ");
             strTemp = Console.ReadLine();
@@ -36,7 +45,6 @@ namespace Arduino2Key
                 strCom = strTemp;
             }
             Console.Write("Select baudrate (9600): ");
-
             strTemp = Console.ReadLine();
             if (!string.IsNullOrEmpty(strTemp))
             {
@@ -72,10 +80,12 @@ namespace Arduino2Key
                     }
                     else
                     {
+                        HandleOtherInput(strStop);
                         Console.Write("Type STOP to exit: ");
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 // Oh noes =(
                 Console.WriteLine("Error: " + e.Message);
@@ -112,10 +122,11 @@ namespace Arduino2Key
 
         public static void HandleInput(string input)
         {
+            // Coin inserted
             if (input == "TIGGER")
             {
                 InputSimulator.SimulateKeyDown(VirtualKeyCode.VK_X);
-                Thread.Sleep(100);
+                Thread.Sleep(50);
                 InputSimulator.SimulateKeyUp(VirtualKeyCode.VK_X);
             }
             else
@@ -131,7 +142,7 @@ namespace Arduino2Key
                     switch (strMessageValue[0])
                     {
                         case "X1":
-                            SimulateInput(intX1, intNewValue, 10, VirtualKeyCode.VK_A, VirtualKeyCode.VK_D);
+                            SimulateInput(intX1, intNewValue, 10, VirtualKeyCode.VK_D, VirtualKeyCode.VK_A);
                             intX1 = intNewValue;
                             break;
                         case "Y1":
@@ -139,7 +150,7 @@ namespace Arduino2Key
                             intY1 = intNewValue;
                             break;
                         case "Z1":
-                            SimulateInput(intZ1, intNewValue, 100, VirtualKeyCode.SPACE, VirtualKeyCode.SPACE);
+                            SimuateKey(intZ1, intNewValue, 100, VirtualKeyCode.VK_F, VirtualKeyCode.VK_G);
                             intZ1 = intNewValue;
                             break;
                         case "X2":
@@ -151,7 +162,7 @@ namespace Arduino2Key
                             intY2 = intNewValue;
                             break;
                         case "Z2":
-                            SimulateInput(intZ2, intNewValue, 100, VirtualKeyCode.SPACE, VirtualKeyCode.SPACE);
+                            SimuateKey(intZ2, intNewValue, 100, VirtualKeyCode.VK_1, VirtualKeyCode.VK_2);
                             intZ2 = intNewValue;
                             break;
                     }
@@ -161,31 +172,60 @@ namespace Arduino2Key
 
         public static void SimulateInput(int intValue, int intNewValue, int intTolerance, VirtualKeyCode keyOne, VirtualKeyCode keyTwo)
         {
-            // Check for movement
-            if (keyOne == keyTwo)
+            // Press a key
+            if (intValue < intNewValue - intTolerance)
             {
-                if (intValue < intNewValue - intTolerance || intValue > intNewValue + intTolerance)
-                {
-                    InputSimulator.SimulateKeyDown(keyOne);
-                    Thread.Sleep(100);
-                    InputSimulator.SimulateKeyUp(keyOne);
-                }
+                InputSimulator.SimulateKeyUp(keyOne);
+                InputSimulator.SimulateKeyDown(keyTwo);
             }
             else
             {
-                if (intValue < intNewValue - intTolerance)
+                if (intValue > intNewValue + intTolerance)
                 {
-                    InputSimulator.SimulateKeyUp(keyOne);
-                    InputSimulator.SimulateKeyDown(keyTwo);
+                    InputSimulator.SimulateKeyUp(keyTwo);
+                    InputSimulator.SimulateKeyDown(keyOne);
                 }
-                else
-                {
-                    if (intValue > intNewValue + intTolerance)
-                    {
-                        InputSimulator.SimulateKeyUp(keyTwo);
-                        InputSimulator.SimulateKeyDown(keyOne);
-                    }
-                }
+            }
+        }
+
+        public static void SimuateKey(int intValue, int intNewValue, int intTolerance, VirtualKeyCode keyOne, VirtualKeyCode keyTwo)
+        {
+            // Press two keys
+            if (intValue < intNewValue - intTolerance || intValue > intNewValue + intTolerance)
+            {
+                InputSimulator.SimulateKeyDown(keyOne);
+                Thread.Sleep(50);
+                InputSimulator.SimulateKeyUp(keyOne);
+                InputSimulator.SimulateKeyDown(keyTwo);
+                Thread.Sleep(50);
+                InputSimulator.SimulateKeyUp(keyTwo);
+            }
+        }
+
+        public static void HandleOtherInput(string strInput)
+        {
+            // trollface.jpg
+            switch (strInput)
+            {
+                case "nyan":
+                    Console.WriteLine("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    Console.WriteLine("░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░");
+                    Console.WriteLine("░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░");
+                    Console.WriteLine("░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░");
+                    Console.WriteLine("░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░");
+                    Console.WriteLine("░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░");
+                    Console.WriteLine("░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░");
+                    Console.WriteLine("░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░");
+                    Console.WriteLine("░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░");
+                    Console.WriteLine("░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░");
+                    Console.WriteLine("░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░");
+                    Console.WriteLine("░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░");
+                    Console.WriteLine("░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░");
+                    Console.WriteLine("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+                    break;
+                case "Open the pod bay doors":
+                    Console.WriteLine("I'm sorry, Dave. I'm afraid I can't do that.");
+                    break;
             }
         }
     }
